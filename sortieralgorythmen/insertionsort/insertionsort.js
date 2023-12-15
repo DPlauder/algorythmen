@@ -11,6 +11,8 @@ const insertionSort = (myArr) => {
                 myArr[j + 1] = myArr[j];
                 myArr[j] = checkNum;
             }
+            else
+                break;
         }
         console.log(myArr);
     }
