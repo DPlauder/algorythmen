@@ -25,5 +25,13 @@ const merge = (myArr1, myArr2) => {
     }
     return mySortedArray;
 };
-console.log(merge([3, 5, 6], [1, 4]));
+const mergeSort = (myArr) => {
+    if (myArr.length <= 1)
+        return myArr;
+    let midValue = Math.floor(myArr.length / 2);
+    let leftArr = mergeSort(myArr.slice(0, midValue));
+    let rightArr = mergeSort(myArr.slice(midValue));
+    return merge(leftArr, rightArr);
+};
+console.log(mergeSort([3, 5, 61, 4, 7]));
 //# sourceMappingURL=mergesort.js.map

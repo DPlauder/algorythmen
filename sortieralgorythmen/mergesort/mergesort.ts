@@ -24,4 +24,12 @@ const merge = (myArr1: number[], myArr2: number[]) => {
   return mySortedArray;
 };
 
-console.log(merge([3, 5, 6], [1, 4]));
+const mergeSort = (myArr: number[]) => {
+  if (myArr.length <= 1) return myArr;
+  let midValue: number = Math.floor(myArr.length / 2);
+  let leftArr: number[] = mergeSort(myArr.slice(0, midValue));
+  let rightArr: number[] = mergeSort(myArr.slice(midValue));
+  return merge(leftArr, rightArr);
+};
+
+console.log(mergeSort([3, 5, 61, 4, 7]));
