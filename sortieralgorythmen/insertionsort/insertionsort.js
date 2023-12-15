@@ -11,7 +11,7 @@ const insertionSort = (myArr) => {
                 myArr[j + 1] = myArr[j];
                 myArr[j] = checkNum;
             }
-            else
+            if (checkNum >= myArr[j + 1])
                 break;
         }
         console.log(myArr);

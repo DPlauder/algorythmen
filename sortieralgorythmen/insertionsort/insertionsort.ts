@@ -9,7 +9,8 @@ const insertionSort = (myArr: number[]) => {
       if (myArr[j + 1] < myArr[j]) {
         myArr[j + 1] = myArr[j];
         myArr[j] = checkNum;
-      } else break;
+      }
+      if (checkNum >= myArr[j + 1]) break;
     }
     console.log(myArr);
   }
