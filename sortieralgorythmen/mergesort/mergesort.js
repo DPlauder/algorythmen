@@ -33,5 +33,5 @@ const mergeSort = (myArr) => {
     let rightArr = mergeSort(myArr.slice(midValue));
     return merge(leftArr, rightArr);
 };
-console.log(mergeSort([3, 5, 61, 4, 7]));
+console.log(mergeSort([3, 5, 61, 4, 7, 22, 70, 2]));
 //# sourceMappingURL=mergesort.js.map

@@ -23,7 +23,6 @@ const merge = (myArr1: number[], myArr2: number[]) => {
   }
   return mySortedArray;
 };
-
 const mergeSort = (myArr: number[]) => {
   if (myArr.length <= 1) return myArr;
   let midValue: number = Math.floor(myArr.length / 2);
@@ -32,4 +31,4 @@ const mergeSort = (myArr: number[]) => {
   return merge(leftArr, rightArr);
 };
 
-console.log(mergeSort([3, 5, 61, 4, 7]));
+console.log(mergeSort([3, 5, 61, 4, 7, 22, 70, 2]));
