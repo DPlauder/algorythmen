@@ -11,7 +11,7 @@ const pivot = (
 ) => {
   let pivotElement: number = myArr[start];
   let pivotIndex: number = start;
-  for (let i = pivotIndex + 1; i <= end; i++) {
+  for (let i = start + 1; i <= end; i++) {
     if (pivotElement > myArr[i]) {
       pivotIndex++;
       swap3(myArr, pivotIndex, i);

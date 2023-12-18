@@ -7,7 +7,7 @@ const swap3 = (myArr, index1, index2) => {
 const pivot = (myArr, start = 0, end = myArr.length - 1) => {
     let pivotElement = myArr[start];
     let pivotIndex = start;
-    for (let i = pivotIndex + 1; i <= end; i++) {
+    for (let i = start + 1; i <= end; i++) {
         if (pivotElement > myArr[i]) {
             pivotIndex++;
             swap3(myArr, pivotIndex, i);
