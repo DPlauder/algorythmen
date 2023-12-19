@@ -6,7 +6,7 @@ const swap = (myArr: number[], index1: number, index2: number) => {
 
 const bubbleSort = (myArr: number[]): number[] => {
   for (let i = 0; i < myArr.length - 1; i++) {
-    let change = false;
+    let change: boolean = false;
     for (let j = 0; j < myArr.length - 1; j++) {
       console.log(myArr[j]);
       if (myArr[j] > myArr[j + 1]) {

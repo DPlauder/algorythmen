@@ -4,7 +4,7 @@ const insertionSort = (myArr) => {
     for (let i = 1; i < myArr.length; i++) {
         checkNum = myArr[i];
         console.log("checknum =", checkNum);
-        for (let j = i - 1; j >= 0; j--) {
+        for (let j = i - 1; j >= 0 && myArr[j] >= checkNum; j--) {
             console.log("with =", myArr[j]);
             if (myArr[j + 1] < myArr[j]) {
                 myArr[j + 1] = myArr[j];
