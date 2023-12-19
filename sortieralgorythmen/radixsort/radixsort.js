@@ -2,7 +2,6 @@
 const getDigit = (num, index) => {
     return Math.floor((num / Math.pow(10, index)) % 10);
 };
-//console.log("hello digtest", getDigit(1, 1));
 const digitCount = (num) => {
     if (num === 0)
         return 1;
@@ -17,21 +16,20 @@ const mostDigits = (myArr) => {
     return maxDigits;
 };
 const radixSort = (myArr) => {
-    let bucket0 = [];
-    let bucket1 = [];
-    let bucket2 = [];
-    let bucket3 = [];
-    let bucket4 = [];
-    let bucket5 = [];
-    let bucket6 = [];
-    let bucket7 = [];
-    let bucket8 = [];
-    let bucket9 = [];
     for (let i = 0; i < mostDigits(myArr); i++) {
         let num;
-        for (let j = 0; j <= myArr.length - 1; j++) {
+        let bucket0 = [];
+        let bucket1 = [];
+        let bucket2 = [];
+        let bucket3 = [];
+        let bucket4 = [];
+        let bucket5 = [];
+        let bucket6 = [];
+        let bucket7 = [];
+        let bucket8 = [];
+        let bucket9 = [];
+        for (let j = 0; j <= myArr.length; j++) {
             num = getDigit(myArr[j], i);
-            //console.log(myArr[j], getDigit(myArr[j], arrayIndex), arrayIndex);
             if (num === 0)
                 bucket0.push(myArr[j]);
             else if (num === 1)
@@ -65,33 +63,8 @@ const radixSort = (myArr) => {
             ...bucket8,
             ...bucket9,
         ];
-        bucket0 = [];
-        bucket1 = [];
-        bucket2 = [];
-        bucket3 = [];
-        bucket4 = [];
-        bucket5 = [];
-        bucket6 = [];
-        bucket7 = [];
-        bucket8 = [];
-        bucket9 = [];
-        //console.log(myArr);
     }
-    /*
-    console.log(
-      bucket0,
-      bucket1,
-      bucket2,
-      bucket3,
-      bucket4,
-      bucket5,
-      bucket6,
-      bucket7,
-      bucket8,
-      bucket9
-    );
-     */
     return myArr;
 };
-console.log(radixSort([200, 23, 1, 12, 13, 300, 10, 11, 14, 100, 1137]));
+console.log(radixSort([200, 23, 1, 12, 13, 300, 10, 1137, 11, 14, 100]));
 //# sourceMappingURL=radixsort.js.map
