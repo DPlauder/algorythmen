@@ -9,19 +9,27 @@ const pivot = (
   start: number = 0,
   end: number = myArr.length - 1
 ) => {
-  let pivotIndex: number;
-  let pivotElement: number;
-  for (let i = 0; i < myArr.length; i++) {
-    pivotElement = myArr[i];
-    pivotIndex = i;
-    for (let j = 1; j < myArr.length - 1; j++) {
-      if (pivotElement > myArr[j]) {
-        swap3(myArr, pivotIndex, myArr[j]);
-        pivotIndex = j;
-      }
+  let pivotElement: number = myArr[start];
+  let pivotIndex: number = start;
+  for (let i = start + 1; i <= end; i++) {
+    if (pivotElement > myArr[i]) {
+      pivotIndex++;
+      swap3(myArr, pivotIndex, i);
     }
+  }
+  swap3(myArr, start, pivotIndex);
+  return pivotIndex;
+};
+const quicksort = (
+  myArr: number[],
+  left: number = 0,
+  right: number = myArr.length - 1
+) => {
+  if (left < right) {
+    const pivotIndex: number = pivot(myArr, left, right);
+    quicksort(myArr, left, pivotIndex - 1);
+    quicksort(myArr, pivotIndex + 1, right);
   }
   return myArr;
 };
-
-console.log(pivot([1, 200, 23, 12]));
+console.log(quicksort([62, 3, 5, 61, 7, 4, 12, 8, 11]));
