@@ -51,13 +51,12 @@ class SinglyLinkedList {
   shift() {
     const tmp = this.head;
     if (!tmp) return undefined;
+    this.head = tmp.next;
     if (!tmp.next) {
-      this.head = null;
       this.tail = null;
       this.length--;
       return tmp;
     }
-    this.head = tmp.next;
     this.length--;
     return tmp;
   }
@@ -69,8 +68,6 @@ myList.append(7);
 myList.append(8);
 myList.append(1);
 
-myList.shift();
-myList.shift();
 myList.shift();
 
 console.log(myList);
