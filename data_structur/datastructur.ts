@@ -49,16 +49,17 @@ class SinglyLinkedList {
   }
   // remove first item
   shift() {
-    let tmp = this.head;
-    if (!this.head) return undefined;
-    if (!this.head.next) {
+    const tmp = this.head;
+    if (!tmp) return undefined;
+    if (!tmp.next) {
       this.head = null;
       this.tail = null;
       this.length--;
       return tmp;
     }
-    this.head = this.head.next;
+    this.head = tmp.next;
     this.length--;
+    return tmp;
   }
 }
 
@@ -68,6 +69,7 @@ myList.append(7);
 myList.append(8);
 myList.append(1);
 
+myList.shift();
 myList.shift();
 myList.shift();
 
