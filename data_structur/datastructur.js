@@ -65,8 +65,7 @@ class SinglyLinkedList {
     unshift(value) {
         const newListNode = new ListNode(value);
         if (this.head) {
-            const temp = this.head;
-            newListNode.next = temp;
+            newListNode.next = this.head;
         }
         else
             this.tail = newListNode;
@@ -74,14 +73,22 @@ class SinglyLinkedList {
         this.length++;
         return this;
     }
+    //get a node from specific index
+    get(index) {
+        if (index >= this.length || index < 0)
+            return undefined;
+        let currentNode = this.head;
+        for (let i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode;
+    }
 }
 const myList = new SinglyLinkedList();
 myList.append(5);
 myList.append(7);
 myList.append(8);
 myList.append(1);
-myList.shift();
-myList.unshift(9);
-myList.unshift(3);
-console.log(myList);
+console.log(myList.get(2));
+//console.log(myList);
 //# sourceMappingURL=datastructur.js.map

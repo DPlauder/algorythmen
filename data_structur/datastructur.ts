@@ -64,13 +64,20 @@ class SinglyLinkedList {
   unshift(value: number) {
     const newListNode = new ListNode(value);
     if (this.head) {
-      const temp = this.head;
-      newListNode.next = temp;
+      newListNode.next = this.head;
     } else this.tail = newListNode;
     this.head = newListNode;
-
     this.length++;
     return this;
+  }
+  //get a node from specific index
+  get(index: number) {
+    if (index >= this.length || index < 0) return undefined;
+    let currentNode: ListNode | null = this.head;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode!.next;
+    }
+    return currentNode;
   }
 }
 
@@ -81,9 +88,5 @@ myList.append(7);
 myList.append(8);
 myList.append(1);
 
-myList.shift();
-
-myList.unshift(9);
-myList.unshift(3);
-
-console.log(myList);
+console.log(myList.get(2));
+//console.log(myList);
