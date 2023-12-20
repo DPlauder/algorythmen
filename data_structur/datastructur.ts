@@ -75,9 +75,16 @@ class SinglyLinkedList {
     if (index >= this.length || index < 0) return undefined;
     let currentNode: ListNode | null = this.head;
     for (let i = 0; i < index; i++) {
-      currentNode = currentNode!.next;
+      currentNode = currentNode?.next as ListNode;
     }
     return currentNode;
+  }
+  //change the value of node item with specific index
+  set(value: number, index: number) {
+    if (index >= this.length || index < 0) return false;
+    let currentNode = this.get(index);
+    currentNode!.value = value;
+    return true;
   }
 }
 
@@ -88,5 +95,5 @@ myList.append(7);
 myList.append(8);
 myList.append(1);
 
-console.log(myList.get(2));
-//console.log(myList);
+console.log(myList.set(2, 0));
+console.log(myList);

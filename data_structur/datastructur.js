@@ -79,9 +79,17 @@ class SinglyLinkedList {
             return undefined;
         let currentNode = this.head;
         for (let i = 0; i < index; i++) {
-            currentNode = currentNode.next;
+            currentNode = currentNode === null || currentNode === void 0 ? void 0 : currentNode.next;
         }
         return currentNode;
+    }
+    //change the value of node item with specific index
+    set(value, index) {
+        if (index >= this.length || index < 0)
+            return false;
+        let currentNode = this.get(index);
+        currentNode.value = value;
+        return true;
     }
 }
 const myList = new SinglyLinkedList();
@@ -89,6 +97,6 @@ myList.append(5);
 myList.append(7);
 myList.append(8);
 myList.append(1);
-console.log(myList.get(2));
-//console.log(myList);
+console.log(myList.set(2, 0));
+console.log(myList);
 //# sourceMappingURL=datastructur.js.map
