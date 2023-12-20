@@ -53,7 +53,6 @@ const radixSort = (myArr: number[]): number[] => {
       ...bucket9,
     ];
   }
-
   return myArr;
 };
 
