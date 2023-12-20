@@ -47,15 +47,27 @@ class SinglyLinkedList {
         this.length--;
         return tmp;
     }
+    // remove first item
+    shift() {
+        let tmp = this.head;
+        if (!this.head)
+            return undefined;
+        if (!this.head.next) {
+            this.head = null;
+            this.tail = null;
+            this.length--;
+            return tmp;
+        }
+        this.head = this.head.next;
+        this.length--;
+    }
 }
 const myList = new SinglyLinkedList();
 myList.append(5);
 myList.append(7);
 myList.append(8);
 myList.append(1);
-myList.pop();
-myList.pop();
-myList.pop();
-myList.pop();
+myList.shift();
+myList.shift();
 console.log(myList);
 //# sourceMappingURL=datastructur.js.map
