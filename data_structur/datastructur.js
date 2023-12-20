@@ -91,12 +91,32 @@ class SinglyLinkedList {
         currentNode.value = value;
         return true;
     }
+    // add node on a specific index
+    insert(value, index) {
+        if (index > this.length || index < 0)
+            return undefined;
+        let newNode = new ListNode(value);
+        if (index === 0) {
+            this.unshift(value);
+            return newNode;
+        }
+        let beforeNode = this.get(index - 1);
+        if (beforeNode === this.tail) {
+            this.append(value);
+            return newNode;
+        }
+        let afternode = beforeNode.next;
+        newNode.next = afternode;
+        beforeNode.next = newNode;
+        this.length++;
+        return newNode;
+    }
 }
 const myList = new SinglyLinkedList();
 myList.append(5);
 myList.append(7);
 myList.append(8);
 myList.append(1);
-console.log(myList.set(2, 0));
+console.log(myList.insert(3, -1));
 console.log(myList);
 //# sourceMappingURL=datastructur.js.map
