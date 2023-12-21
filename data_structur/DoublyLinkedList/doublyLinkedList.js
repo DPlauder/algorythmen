@@ -46,7 +46,6 @@ class DoublyLinkedList {
     }
     temp.prev = null;
     this.head = temp;
-    //this.head!.next = null;
     this.length--;
   }
 }
