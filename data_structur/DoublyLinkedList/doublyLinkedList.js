@@ -90,12 +90,28 @@ class DoublyLinkedList {
         }
         return false;
     }
+    insert(value, index) {
+        if (index < 0 || index > this.length)
+            return false;
+        if (index === 0)
+            this.unshift(value);
+        if (index === this.length)
+            this.append(value);
+        const newNode = new ListNode(value);
+        const prevNode = this.get(index - 1);
+        newNode.prev = prevNode;
+        newNode.next = prevNode.next;
+        prevNode.next.prev = newNode;
+        prevNode.next = newNode;
+        this.length++;
+        return true;
+    }
 }
 const newList = new DoublyLinkedList();
 newList.append(7);
 newList.append(1);
 newList.append(6);
 newList.append(8);
-newList.set(5, 1);
+newList.insert(5, 1);
 console.log(newList.get(1));
 //# sourceMappingURL=doublyLinkedList.js.map
