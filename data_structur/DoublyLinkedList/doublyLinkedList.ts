@@ -44,9 +44,9 @@ class DoublyLinkedList<T> {
       this.tail = null;
       return temp;
     }
-    temp!.prev = null;
-    this.head = temp;
-    //this.head!.next = null;
+    this.head = temp?.next as ListNode<T>;
+    this.head.prev = null;
+    temp!.next = null;
     this.length--;
   }
 }
@@ -57,5 +57,5 @@ newList.append(7);
 newList.append(1);
 newList.append(6);
 newList.append(8);
-//newList.shift();
+newList.shift();
 console.log(newList);
