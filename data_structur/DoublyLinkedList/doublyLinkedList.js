@@ -65,12 +65,28 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+    get(index) {
+        if (index < 0 || index >= this.length)
+            return null;
+        let temp = this.head;
+        if (Math.floor(this.length / 2) < index) {
+            temp = this.tail;
+            for (let i = this.length - 1; i > index; i--) {
+                temp = temp.prev;
+            }
+        }
+        else {
+            for (let i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+        }
+        return temp;
+    }
 }
 const newList = new DoublyLinkedList();
 newList.append(7);
 newList.append(1);
 newList.append(6);
 newList.append(8);
-newList.unshift(2);
-console.log(newList);
+console.log(newList.get(-1));
 //# sourceMappingURL=doublyLinkedList.js.map
