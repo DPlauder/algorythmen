@@ -45,11 +45,9 @@ class DoublyLinkedList {
       return temp;
     }
     temp.prev = null;
-    this.head.next = null;
-
     this.head = temp;
+    //this.head!.next = null;
     this.length--;
-    return temp;
   }
 }
 const newList = new DoublyLinkedList();
