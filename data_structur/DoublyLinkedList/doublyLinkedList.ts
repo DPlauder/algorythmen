@@ -77,6 +77,14 @@ class DoublyLinkedList<T> {
     }
     return temp;
   }
+  set(value: T, index: number) {
+    let currentNode = this.get(index);
+    if (currentNode) {
+      currentNode.value = value;
+      return true;
+    }
+    return false;
+  }
 }
 
 const newList = new DoublyLinkedList();
@@ -85,4 +93,5 @@ newList.append(7);
 newList.append(1);
 newList.append(6);
 newList.append(8);
-console.log(newList.get(-1));
+newList.set(5, 1);
+console.log(newList.get(1));
