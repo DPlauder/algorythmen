@@ -12,6 +12,7 @@ class DoublyLinkedList {
         this.tail = null;
         this.length = 0;
     }
+    // adds new Item at End
     append(value) {
         const newListNode = new ListNode(value);
         if (this.head === null)
@@ -24,6 +25,7 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+    // deletes last item
     pop() {
         if (!this.head)
             return -1;
@@ -38,6 +40,7 @@ class DoublyLinkedList {
         this.length--;
         return temp;
     }
+    // deletes first item
     shift() {
         if (this.length === 0)
             return -1;
@@ -53,6 +56,7 @@ class DoublyLinkedList {
         this.length--;
         return temp;
     }
+    // adds item on beginning
     unshift(value) {
         const newNode = new ListNode(value);
         if (this.length === 0) {
@@ -65,6 +69,7 @@ class DoublyLinkedList {
         this.length++;
         return this;
     }
+    // gets item from specific position
     get(index) {
         if (index < 0 || index >= this.length)
             return null;
@@ -82,6 +87,7 @@ class DoublyLinkedList {
         }
         return temp;
     }
+    //changes item on specific position
     set(value, index) {
         let currentNode = this.get(index);
         if (currentNode) {
@@ -90,6 +96,7 @@ class DoublyLinkedList {
         }
         return false;
     }
+    //inserts item on specific position
     insert(value, index) {
         if (index < 0 || index > this.length)
             return false;
@@ -99,13 +106,15 @@ class DoublyLinkedList {
             this.append(value);
         const newNode = new ListNode(value);
         const prevNode = this.get(index - 1);
+        const nextNode = prevNode === null || prevNode === void 0 ? void 0 : prevNode.next;
         newNode.prev = prevNode;
         newNode.next = prevNode.next;
-        prevNode.next.prev = newNode;
+        nextNode.prev = newNode;
         prevNode.next = newNode;
         this.length++;
         return true;
     }
+    // deletes item from specific position
     remove(index) {
         if (index < 0 || index > this.length)
             return undefined;

@@ -11,7 +11,7 @@ class DoublyLinkedList<T> {
   tail: ListNode<T> | null = null;
   length: number = 0;
   constructor() {}
-
+  // adds new Item at End
   append(value: T) {
     const newListNode = new ListNode<T>(value);
     if (this.head === null) this.head = newListNode;
@@ -23,6 +23,7 @@ class DoublyLinkedList<T> {
     this.length++;
     return this;
   }
+  // deletes last item
   pop() {
     if (!this.head) return -1;
     let temp = this.tail;
@@ -36,6 +37,7 @@ class DoublyLinkedList<T> {
     this.length--;
     return temp;
   }
+  // deletes first item
   shift() {
     if (this.length === 0) return -1;
     let temp = this.head;
@@ -50,6 +52,7 @@ class DoublyLinkedList<T> {
     this.length--;
     return temp;
   }
+  // adds item on beginning
   unshift(value: T) {
     const newNode = new ListNode(value);
     if (this.length === 0) {
@@ -62,6 +65,7 @@ class DoublyLinkedList<T> {
     this.length++;
     return this;
   }
+  // gets item from specific position
   get(index: number) {
     if (index < 0 || index >= this.length) return null;
     let temp = this.head;
@@ -77,6 +81,7 @@ class DoublyLinkedList<T> {
     }
     return temp;
   }
+  //changes item on specific position
   set(value: T, index: number) {
     let currentNode = this.get(index);
     if (currentNode) {
@@ -85,19 +90,22 @@ class DoublyLinkedList<T> {
     }
     return false;
   }
+  //inserts item on specific position
   insert(value: T, index: number) {
     if (index < 0 || index > this.length) return false;
     if (index === 0) this.unshift(value);
     if (index === this.length) this.append(value);
     const newNode = new ListNode(value);
     const prevNode = this.get(index - 1);
+    const nextNode = prevNode?.next;
     newNode.prev = prevNode;
     newNode.next = prevNode!.next;
-    prevNode!.next!.prev = newNode;
+    nextNode!.prev = newNode;
     prevNode!.next = newNode;
     this.length++;
     return true;
   }
+  // deletes item from specific position
   remove(index: number) {
     if (index < 0 || index > this.length) return undefined;
     if (index === 0) this.shift();
