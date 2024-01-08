@@ -105,6 +105,31 @@ class Tree<T> {
     traverse(this.root);
     return visited;
   }
+
+  depth(node: TreeNode<T>, start: TreeNode<T> = this.root!) {
+    if (!this.root) return 0;
+    let depth: number = 0;
+    let current = start;
+    const travel = (current: TreeNode<T>) => {
+      if (current.value === node.value) return depth;
+      if (node.value < current.value && current.left) {
+        travel(current.left!);
+      }
+      if (node.value > current.value && current.right) {
+        travel(current.right!);
+      }
+      return depth++;
+    };
+    travel(current);
+    return depth;
+  }
+
+  height(node: TreeNode<T>) {
+    if (!node) return -1;
+    let leftHeight: number = this.height(node.left!);
+    let rightHeight: number = this.height(node.right!);
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
 const prettyPrint = (node: TreeNode<number>, prefix = "", isLeft = true) => {
   if (node.right !== null) {
@@ -120,6 +145,6 @@ const data = [5, 10, 21, 87, 301, 350];
 const tree = new Tree<number>();
 tree.buildTree(data);
 
-console.log(tree.postOrder());
+console.log(tree.depth(tree.root!.left!.right!, tree.root!.right!.right!));
 
 prettyPrint(tree.root as TreeNode<number>);

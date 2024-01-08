@@ -129,6 +129,32 @@ class Tree {
         traverse(this.root);
         return visited;
     }
+    depth(node, start = this.root) {
+        if (!this.root)
+            return 0;
+        let depth = 0;
+        let current = start;
+        const travel = (current) => {
+            if (current.value === node.value)
+                return depth;
+            if (node.value < current.value && current.left) {
+                travel(current.left);
+            }
+            if (node.value > current.value && current.right) {
+                travel(current.right);
+            }
+            return depth++;
+        };
+        travel(current);
+        return depth;
+    }
+    height(node) {
+        if (!node)
+            return -1;
+        let leftHeight = this.height(node.left);
+        let rightHeight = this.height(node.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
 }
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node.right !== null) {
@@ -142,6 +168,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 const data = [5, 10, 21, 87, 301, 350];
 const tree = new Tree();
 tree.buildTree(data);
-console.log(tree.postOrder());
+console.log(tree.depth(tree.root.left.right, tree.root.right.right));
 prettyPrint(tree.root);
 //# sourceMappingURL=tree.js.map
