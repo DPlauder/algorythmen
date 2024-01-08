@@ -57,6 +57,54 @@ class Tree<T> {
     };
     return search(this.root, value) ?? -1;
   }
+  breadthFirst() {
+    if (!this.root) {
+      return -1;
+    }
+    const queue: TreeNode<T>[] = [this.root];
+    const visited: T[] = [];
+    let node: TreeNode<T>;
+    while (queue.length > 0) {
+      node = queue.shift() as TreeNode<T>;
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+      visited.push(node.value);
+    }
+    return visited;
+  }
+  preOrder() {
+    if (!this.root) return -1;
+    const visited: T[] = [];
+    const traverse = (node: TreeNode<T>) => {
+      visited.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    };
+    traverse(this.root);
+    return visited;
+  }
+  inOrder() {
+    if (!this.root) return -1;
+    const visited: T[] = [];
+    const traverse = (node: TreeNode<T>) => {
+      if (node.left) traverse(node.left);
+      visited.push(node.value);
+      if (node.right) traverse(node.right);
+    };
+    traverse(this.root);
+    return visited;
+  }
+  postOrder() {
+    if (!this.root) return -1;
+    const visited: T[] = [];
+    const traverse = (node: TreeNode<T>) => {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      visited.push(node.value);
+    };
+    traverse(this.root);
+    return visited;
+  }
 }
 const prettyPrint = (node: TreeNode<number>, prefix = "", isLeft = true) => {
   if (node.right !== null) {
@@ -68,15 +116,10 @@ const prettyPrint = (node: TreeNode<number>, prefix = "", isLeft = true) => {
   }
 };
 
-//const data = [5, 10, 21, 87, 301, 350];
+const data = [5, 10, 21, 87, 301, 350];
 const tree = new Tree<number>();
+tree.buildTree(data);
 
-tree.insertRec(5);
-tree.insertRec(6);
-tree.insertRec(2);
-tree.insertRec(3);
+console.log(tree.postOrder());
 
-console.log(tree.find(6));
-
-//tree.buildTree(data);
 prettyPrint(tree.root as TreeNode<number>);

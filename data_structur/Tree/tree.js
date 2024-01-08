@@ -70,6 +70,65 @@ class Tree {
         };
         return (_a = search(this.root, value)) !== null && _a !== void 0 ? _a : -1;
     }
+    breadthFirst() {
+        if (!this.root) {
+            return -1;
+        }
+        const queue = [this.root];
+        const visited = [];
+        let node;
+        while (queue.length > 0) {
+            node = queue.shift();
+            if (node.left)
+                queue.push(node.left);
+            if (node.right)
+                queue.push(node.right);
+            visited.push(node.value);
+        }
+        return visited;
+    }
+    preOrder() {
+        if (!this.root)
+            return -1;
+        const visited = [];
+        const traverse = (node) => {
+            visited.push(node.value);
+            if (node.left)
+                traverse(node.left);
+            if (node.right)
+                traverse(node.right);
+        };
+        traverse(this.root);
+        return visited;
+    }
+    inOrder() {
+        if (!this.root)
+            return -1;
+        const visited = [];
+        const traverse = (node) => {
+            if (node.left)
+                traverse(node.left);
+            visited.push(node.value);
+            if (node.right)
+                traverse(node.right);
+        };
+        traverse(this.root);
+        return visited;
+    }
+    postOrder() {
+        if (!this.root)
+            return -1;
+        const visited = [];
+        const traverse = (node) => {
+            if (node.left)
+                traverse(node.left);
+            if (node.right)
+                traverse(node.right);
+            visited.push(node.value);
+        };
+        traverse(this.root);
+        return visited;
+    }
 }
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node.right !== null) {
@@ -80,13 +139,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
         prettyPrint(node.left, `${prefix}${isLeft ? "│   " : "    "}`, true);
     }
 };
-//const data = [5, 10, 21, 87, 301, 350];
+const data = [5, 10, 21, 87, 301, 350];
 const tree = new Tree();
-tree.insertRec(5);
-tree.insertRec(6);
-tree.insertRec(2);
-tree.insertRec(3);
-console.log(tree.find(6));
-//tree.buildTree(data);
+tree.buildTree(data);
+console.log(tree.postOrder());
 prettyPrint(tree.root);
 //# sourceMappingURL=tree.js.map
