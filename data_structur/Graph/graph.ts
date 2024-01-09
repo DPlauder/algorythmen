@@ -39,15 +39,15 @@ class Graph<T> {
   depthFirstRec(startVertex: T): T[] {
     const result: T[] = [];
     const visited: { [key: string]: boolean } = {};
-    const check = (vertex: T) => {
+    const dfs = (vertex: T) => {
       if (!vertex) return null;
       visited[vertex as string] = true;
       result.push(vertex);
       this.adjacencyList.get(vertex)?.forEach((neighbour) => {
-        if (!visited[neighbour as string]) check(neighbour);
+        if (!visited[neighbour as string]) dfs(neighbour);
       });
     };
-    check(startVertex);
+    dfs(startVertex);
 
     return result;
   }
@@ -69,6 +69,46 @@ class Graph<T> {
     }
     return result;
   }
+  breadthFirstIterative(startVertex: T): T[] {
+    const queue: T[] = [startVertex];
+    const result: T[] = [];
+    let visited: { [key: string]: boolean } = {};
+    let currentVertex: T | null = null;
+    visited[startVertex as string] = true;
+    while (queue.length) {
+      currentVertex = queue.shift() as T;
+      result.push(currentVertex);
+      this.adjacencyList.get(currentVertex)?.forEach((neighbour) => {
+        if (!visited[neighbour as string]) {
+          visited[neighbour as string] = true;
+          queue.push(neighbour);
+        }
+      });
+    }
+    return result;
+  }
+  /* 
+  breadthFirstRec(startVertex: T): T[] {
+    const queue: T[] = [startVertex];
+    const result: T[] = [];
+
+    const bfs = () => {
+      if (queue.length === 0) return;
+      let currentVertex = queue.shift() as T;
+      result.push(currentVertex);
+      this.adjacencyList
+        .get(currentVertex)
+        ?.slice()
+        .reverse()
+        .forEach((node: T) => {
+          if (node != currentVertex) queue.push(node);
+        });
+      bfs();
+    };
+    bfs();
+
+    return result;
+  } */
 }
 
 const graph = new Graph<string>();
@@ -101,5 +141,4 @@ graph.addEdge("E", "F");
 graph.addEdge("D", "F");
 graph.addEdge("D", "E");
 console.log(graph.depthFirstRec("A"));
-
-console.log(graph.adjacencyList);
+console.log(graph.breadthFirstIterative("A"));

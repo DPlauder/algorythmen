@@ -2,6 +2,28 @@
 class Graph {
     constructor() {
         this.adjacencyList = new Map();
+        /*
+        breadthFirstRec(startVertex: T): T[] {
+          const queue: T[] = [startVertex];
+          const result: T[] = [];
+      
+          const bfs = () => {
+            if (queue.length === 0) return;
+            let currentVertex = queue.shift() as T;
+            result.push(currentVertex);
+            this.adjacencyList
+              .get(currentVertex)
+              ?.slice()
+              .reverse()
+              .forEach((node: T) => {
+                if (node != currentVertex) queue.push(node);
+              });
+            bfs();
+          };
+          bfs();
+      
+          return result;
+        } */
     }
     addVertex(vertex) {
         this.adjacencyList.set(vertex, []);
@@ -35,7 +57,7 @@ class Graph {
     depthFirstRec(startVertex) {
         const result = [];
         const visited = {};
-        const check = (vertex) => {
+        const dfs = (vertex) => {
             var _a;
             if (!vertex)
                 return null;
@@ -43,10 +65,10 @@ class Graph {
             result.push(vertex);
             (_a = this.adjacencyList.get(vertex)) === null || _a === void 0 ? void 0 : _a.forEach((neighbour) => {
                 if (!visited[neighbour])
-                    check(neighbour);
+                    dfs(neighbour);
             });
         };
-        check(startVertex);
+        dfs(startVertex);
         return result;
     }
     depthFirstIterative(startVertex) {
@@ -63,6 +85,25 @@ class Graph {
                 if (!visited[neighbour]) {
                     visited[neighbour] = true;
                     stack.push(neighbour);
+                }
+            });
+        }
+        return result;
+    }
+    breadthFirstIterative(startVertex) {
+        var _a;
+        const queue = [startVertex];
+        const result = [];
+        let visited = {};
+        let currentVertex = null;
+        visited[startVertex] = true;
+        while (queue.length) {
+            currentVertex = queue.shift();
+            result.push(currentVertex);
+            (_a = this.adjacencyList.get(currentVertex)) === null || _a === void 0 ? void 0 : _a.forEach((neighbour) => {
+                if (!visited[neighbour]) {
+                    visited[neighbour] = true;
+                    queue.push(neighbour);
                 }
             });
         }
@@ -97,5 +138,5 @@ graph.addEdge("E", "F");
 graph.addEdge("D", "F");
 graph.addEdge("D", "E");
 console.log(graph.depthFirstRec("A"));
-console.log(graph.adjacencyList);
+console.log(graph.breadthFirstIterative("A"));
 //# sourceMappingURL=graph.js.map
