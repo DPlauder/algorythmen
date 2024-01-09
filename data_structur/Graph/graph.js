@@ -32,23 +32,19 @@ class Graph {
         }
         this.adjacencyList.delete(vertex);
     }
-    depthFirst(startVertex) {
-        const stack = [startVertex];
+    depthFirstRec(startVertex) {
         const result = [];
-        let visited = {};
-        if (this.adjacencyList.get(startVertex)) {
-        }
-        const check = (current) => {
+        const visited = {};
+        const check = (vertex) => {
             var _a;
-            if (stack.length === 0)
-                return;
-            if (visited[current] != true) {
-                result.push(current);
-                visited[startVertex] = true;
-                (_a = this.adjacencyList
-                    .get(current)) === null || _a === void 0 ? void 0 : _a.forEach((element) => stack.push(element));
-                check(stack.pop);
-            }
+            if (!vertex)
+                return null;
+            visited[vertex] = true;
+            result.push(vertex);
+            (_a = this.adjacencyList.get(vertex)) === null || _a === void 0 ? void 0 : _a.forEach((neighbour) => {
+                if (!visited[neighbour])
+                    check(neighbour);
+            });
         };
         check(startVertex);
         return result;
@@ -100,6 +96,6 @@ graph.addEdge("E", "C");
 graph.addEdge("E", "F");
 graph.addEdge("D", "F");
 graph.addEdge("D", "E");
-console.log(graph.depthFirstIterative("A"));
+console.log(graph.depthFirstRec("A"));
 console.log(graph.adjacencyList);
 //# sourceMappingURL=graph.js.map

@@ -36,22 +36,16 @@ class Graph<T> {
     }
     this.adjacencyList.delete(vertex);
   }
-  depthFirst(startVertex: T): T[] {
-    const stack = [startVertex];
+  depthFirstRec(startVertex: T): T[] {
     const result: T[] = [];
-    let visited: { [key: string]: boolean } = {};
-    if (this.adjacencyList.get(startVertex)) {
-    }
-    const check = (current: T) => {
-      if (stack.length === 0) return;
-      if (visited[current as string] != true) {
-        result.push(current);
-        visited[startVertex as string] = true;
-        this.adjacencyList
-          .get(current)
-          ?.forEach((element) => stack.push(element));
-        check(stack.pop as T);
-      }
+    const visited: { [key: string]: boolean } = {};
+    const check = (vertex: T) => {
+      if (!vertex) return null;
+      visited[vertex as string] = true;
+      result.push(vertex);
+      this.adjacencyList.get(vertex)?.forEach((neighbour) => {
+        if (!visited[neighbour as string]) check(neighbour);
+      });
     };
     check(startVertex);
 
@@ -106,6 +100,6 @@ graph.addEdge("E", "C");
 graph.addEdge("E", "F");
 graph.addEdge("D", "F");
 graph.addEdge("D", "E");
-console.log(graph.depthFirstIterative("A"));
+console.log(graph.depthFirstRec("A"));
 
 console.log(graph.adjacencyList);
